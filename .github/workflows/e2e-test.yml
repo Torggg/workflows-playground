@@ -61,13 +61,13 @@ jobs:
 
         - name: Terraform Apply
           id: apply
-          working-directory: test/e2e/eks
+          # working-directory: test/e2e/eks
           run: echo "running TF apply beep boop..." && exit 1
           continue-on-error: true
 
         - name: Terraform Destroy
           if: steps.apply.outcome == 'success' || steps.apply.outcome == 'failure'
           id: destroy
-          working-directory: test/e2e/eks
+          # working-directory: test/e2e/eks
           run: echo "running TF DESTROY beep boop..."
           continue-on-error: false
