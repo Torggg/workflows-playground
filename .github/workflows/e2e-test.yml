@@ -72,3 +72,8 @@ jobs:
           # working-directory: test/e2e/eks
           run: echo "running TF DESTROY beep boop..."
           continue-on-error: false
+        - name: Fail if apply failed
+          if: steps.apply.outcome == 'failure'
+          id: fail-if-apply-failed
+          run: echo "apply failed" && exit 1
+          continue-on-error: false
