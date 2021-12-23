@@ -75,5 +75,5 @@ jobs:
         - name: Fail if apply failed
           if: steps.apply.outcome == 'failure'
           id: fail-if-apply-failed
-          run: echo "apply failed" && exit 1
+          run: echo "Terraform Apply step failed...Check the logs of that step\n Failing the job to avoid false positives" && exit 1
           continue-on-error: false
