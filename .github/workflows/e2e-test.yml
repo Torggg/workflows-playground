@@ -63,7 +63,7 @@ jobs:
         - name: Terraform Apply
           id: apply
           # working-directory: test/e2e/eks
-          run: echo "running TF apply beep boop..." && exit 1
+          run: echo "running TF apply beep boop..." && exit 0
           continue-on-error: true
 
         - name: Terraform Destroy
