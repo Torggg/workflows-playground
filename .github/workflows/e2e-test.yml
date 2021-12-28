@@ -74,10 +74,11 @@ jobs:
           continue-on-error: true
 
         - name: Terraform Destroy
-          if: ${{ github.event.inputs.autoTFDestroy }} == 'true' && (steps.apply.outcome == 'success' || steps.apply.outcome == 'failure')
+          if: github.event.inputs.autoTFDestroy == 'true' && (steps.apply.outcome == 'success' || steps.apply.outcome == 'failure')
           id: destroy
           # working-directory: test/e2e/eks
-          run: echo "running TF DESTROY beep boop...autoTFDestroy: ${{ github.event.inputs.autoTFDestroy }}"
+          run: |
+            echo "running TF DESTROY beep boop...autoTFDestroy: ${{ github.event.inputs.autoTFDestroy }}"
           continue-on-error: false
         - name: Fail if apply failed
           if: steps.apply.outcome == 'failure'
