@@ -7,7 +7,7 @@ on:
     inputs:
       autoTFDestroy:
         description: 'Destroy TF Automatically (false/true) - Default: true'
-        required: false
+        required: true
         default: 'true'
   push:
 
