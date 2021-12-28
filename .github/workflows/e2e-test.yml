@@ -1,13 +1,14 @@
 name: e2e-test
 
-inputs:
-  autoTFDestroy:
-    description: 'Destroy TF Automatically (false/true) - Default: true'
-    required: false
-    default: 'true'
+
 
 on:
   workflow_dispatch:
+    inputs:
+      autoTFDestroy:
+        description: 'Destroy TF Automatically (false/true) - Default: true'
+        required: false
+        default: 'true'
   push:
 
 jobs:
