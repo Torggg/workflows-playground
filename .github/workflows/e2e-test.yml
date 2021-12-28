@@ -1,5 +1,11 @@
 name: e2e-test
 
+inputs:
+  autoTFDestroy:
+    description: 'Destroy TF Automatically (false/true) - Default: true'
+    required: false
+    default: 'true'
+
 on:
   workflow_dispatch:
   push:
@@ -67,7 +73,7 @@ jobs:
           continue-on-error: true
 
         - name: Terraform Destroy
-          if: steps.apply.outcome == 'success' || steps.apply.outcome == 'failure'
+          if: ${{ github.event.inputs.autoTFDestroy }} == 'true' && (steps.apply.outcome == 'success' || steps.apply.outcome == 'failure')
           id: destroy
           # working-directory: test/e2e/eks
           run: echo "running TF DESTROY beep boop..."
