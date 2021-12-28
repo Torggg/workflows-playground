@@ -84,7 +84,7 @@ jobs:
           if: steps.apply.outcome == 'failure'
           id: fail-if-apply-failed
           run: |
-            echo "Terraform Apply step failed...Check the logs of that step."
+            echo "Terraform Apply step failed...Check the logs of that step. autoTFDestroy: ${{ github.event.inputs.autoTFDestroy }}"
             echo "Failing the job to avoid false positives."
             exit 1
           continue-on-error: false
