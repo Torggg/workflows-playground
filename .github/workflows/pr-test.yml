@@ -1,0 +1,23 @@
+name: Default Config Integration Test
+on:
+  pull_request_target:
+    types: [labeled]
+  workflow_dispatch:
+
+jobs:
+  IntegrationTest:
+    runs-on: ubuntu-latest
+    if: ${{contains(github.event.pull_request.labels.*.name, 'Manually Reviewed')}}
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+      statuses: write
+    steps:
+      - name: Check out pull request code base
+        uses: actions/checkout@v2
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+      - name : SUPER Secret
+        run: echo "{{secrets.SUPER_SECRET}}"
